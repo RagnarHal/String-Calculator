@@ -53,4 +53,9 @@ public class CalculatorTest {
     public void testMixedDelim() {
         assertEquals(17, Calculator.addnums("4,3\n10"));
     }
+
+    @Test
+    public void testCustomDelim() {
+        assertEquals(3, Calculator.addnums("//*\n1*2"));
+    }
 }

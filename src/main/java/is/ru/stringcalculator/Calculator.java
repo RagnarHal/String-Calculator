@@ -3,12 +3,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 //Remember to refactor after each passing test.
 public class Calculator {
-	// Regex for the delimiter
-	final static String delim = "[,\n]";
+	// Regex for the default delimiter
+	static String delim = "[,\n]";
 
 	public static int addnums(String text){
 		if(text == "") {
 			return 0;
+		}
+
+		if(text.startsWith("//")) {
+			delim = delim.replace(',', text.charAt(2));
+			text = text.substring(4);
 		}
 
 		return sum(splitString(text));
