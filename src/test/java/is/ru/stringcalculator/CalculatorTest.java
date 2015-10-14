@@ -30,6 +30,11 @@ public class CalculatorTest {
     }
 
     @Test
+    public void testNegativeTwoNumbers() {
+        assertEquals(-3, Calculator.addnums("0,-3"));
+    }
+
+    @Test
     public void testThreeNumbers() {
         assertEquals(17, Calculator.addnums("4,3,10"));
     }
