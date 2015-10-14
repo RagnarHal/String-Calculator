@@ -11,6 +11,10 @@ public class Calculator {
 			return 0;
 		}
 
+		return toInt(text);
+	}
+
+	private static int toInt(String text) {
 		return Integer.parseInt(text);
 	}
 }
