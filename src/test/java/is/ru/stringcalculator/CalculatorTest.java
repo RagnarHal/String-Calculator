@@ -13,4 +13,9 @@ public class CalculatorTest {
 	public void testEmptyString() {
 		assertEquals(0, Calculator.addnums(""));
 	}
+
+    @Test
+    public void testOneNumber() {
+        assertEquals(3, Calculator.addnums("3"));
+    }
 }

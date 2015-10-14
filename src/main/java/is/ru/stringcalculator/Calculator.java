@@ -7,6 +7,10 @@ public class Calculator {
 
 
 	public static int addnums(String text){
-		return 0;
+		if(text == "") {
+			return 0;
+		}
+
+		return Integer.parseInt(text);
 	}
 }
