@@ -56,6 +56,6 @@ public class CalculatorTest {
 
     @Test
     public void testCustomDelim() {
-        assertEquals(3, Calculator.addnums("//*\n1*2"));
+        assertEquals(3, Calculator.addnums("//;\n1;2"));
     }
 }
