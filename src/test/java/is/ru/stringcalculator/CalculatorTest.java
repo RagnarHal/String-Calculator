@@ -139,4 +139,15 @@ public class CalculatorTest {
         }
         assertTrue(threwException);
     }
+
+    @Test
+    public void testLengthyDelimiters() {
+        assertEquals(6, Calculator.addnums("//[***]\n1***2***3"));
+        assertEquals(6, Calculator.addnums("//[,**;*]\n1,**;*2,**;*3"));
+    }
+
+    @Test
+    public void testLengthyDelimiterWith1Symbol() {
+        assertEquals(6, Calculator.addnums("//[*]\n1*2*3"));
+    }
 }

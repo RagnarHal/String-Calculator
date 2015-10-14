@@ -46,6 +46,18 @@ public class Calculator {
 		// Replace all newlines with the default delimiter to simplify expression handling
 		text = text.replace("\n", ",");
 
+		if(text.startsWith("//[")) {
+			// Extract the delimiter string between the brackets
+			String delim = text.substring(3, text.indexOf("]"));
+			// Check for illegal delimiter
+			if(delim.contains("-"))
+				throw new IllegalArgumentException("Illegal delimiter: " + delim);
+			// Throw away the "//[delimiter]\n" part
+			text = text.substring(5 + delim.length());
+			// Replace all instances of the new delimiter with the default one
+			text = text.replace(delim, ",");
+		}
+
 		if (text.startsWith("//")) {
 			// Extract the new delimiter
 			String delim = text.substring(2, 3);
