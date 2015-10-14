@@ -11,10 +11,20 @@ public class Calculator {
 			return 0;
 		}
 
-		return toInt(text);
+		String[] tokens = text.split(",");
+
+		int sum = 0;
+
+		for(String number : tokens) {
+			sum += toInt(number);
+		}
+
+		return sum;
 	}
 
-	private static int toInt(String text) {
-		return Integer.parseInt(text);
+
+/* Helpers */
+	private static int toInt(String num) {
+		return Integer.parseInt(num);
 	}
 }
