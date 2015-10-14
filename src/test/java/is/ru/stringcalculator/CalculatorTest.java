@@ -18,4 +18,9 @@ public class CalculatorTest {
     public void testOneNumber() {
         assertEquals(3, Calculator.addnums("3"));
     }
+
+    @Test
+    public void testNegativeOneNumber() {
+        assertEquals(-3, Calculator.addnums("-3"));
+    }
 }
