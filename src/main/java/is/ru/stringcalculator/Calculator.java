@@ -11,11 +11,7 @@ public class Calculator {
 			return 0;
 		}
 
-		if(text.startsWith("//")) {
-			delim = delim.replace(',', text.charAt(2));
-			text = text.substring(4);
-		}
-
+		text = handleString(text);
 		return sum(splitString(text));
 	}
 
@@ -37,5 +33,14 @@ public class Calculator {
 
 	private static String[] splitString(String text) {
 		return text.split(delim);
+	}
+
+	private static String handleString(String text) {
+		if (text.startsWith("//")) {
+			delim = delim.replace(',', text.charAt(2));
+			text = text.substring(4);
+		}
+
+		return text;
 	}
 }
