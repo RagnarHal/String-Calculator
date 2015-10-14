@@ -3,9 +3,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 //Remember to refactor after each passing test.
 public class Calculator {
-	final static String delim = ",";
-	//This is the only function that is being tested.
-
+	// Regex for the delimiter
+	final static String delim = "[,\n]";
 
 	public static int addnums(String text){
 		if(text == "") {

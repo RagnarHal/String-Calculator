@@ -43,4 +43,14 @@ public class CalculatorTest {
     public void testFourNumbers() {
         assertEquals(22, Calculator.addnums("4,3,10,5"));
     }
+
+    @Test
+    public void testNewlineDelim() {
+        assertEquals(7, Calculator.addnums("4\n3"));
+    }
+
+    @Test
+    public void testMixedDelim() {
+        assertEquals(17, Calculator.addnums("4,3\n10"));
+    }
 }
