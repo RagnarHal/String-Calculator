@@ -98,4 +98,45 @@ public class CalculatorTest {
         }
         assertTrue(threwException);
     }
+
+    @Test
+    public void testLargeNumber() {
+        assertEquals(6, Calculator.addnums("1001,6"));
+    }
+
+    @Test
+    public void test1000() {
+        assertEquals(1006, Calculator.addnums("1000,6"));
+    }
+
+    @Test
+    public void testLargeNumberWithCustomDelimiter() {
+        assertEquals(3, Calculator.addnums("//;\n2000;3"));
+    }
+
+    @Test
+    public void testLargeNumberWithNegativeNumbers() {
+        Boolean threwException = false;
+        try {
+            Calculator.addnums("5000,-3, 5");
+        }
+        catch(IllegalArgumentException ex) {
+            threwException = true;
+            //out.print("\nException message for testNegSignAsDelimiter: " + ex.getMessage() + "\n");
+        }
+        assertTrue(threwException);
+    }
+
+    @Test
+    public void testLargeNumberWithIllegalDelimiter() {
+        Boolean threwException = false;
+        try {
+            Calculator.addnums("//-\n5000-3-5");
+        }
+        catch(IllegalArgumentException ex) {
+            threwException = true;
+            //out.print("\nException message for testNegSignAsDelimiter: " + ex.getMessage() + "\n");
+        }
+        assertTrue(threwException);
+    }
 }

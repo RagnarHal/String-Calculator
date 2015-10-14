@@ -9,10 +9,13 @@ public class Calculator {
 		}
 
 		// Replace all '\n' with ',' and check if a new delimiter is requested
+		// Throws exception if requested delimiter is illegal
 		text = handleString(text);
 		// Throws exception if "-" is present in the string.
 		checkNegativeNumbers(text);
-
+		// Removes all numbers larger than 1000 from the string
+		text = removeLargeNumbers(text);
+		
 		return sum(splitString(text));
 	}
 
@@ -33,6 +36,9 @@ public class Calculator {
 	}
 
 	private static String[] splitString(String text) {
+		String[] numbers = text.split(",");
+
+
 		return text.split(",");
 	}
 
@@ -68,5 +74,19 @@ public class Calculator {
 		if(!negatives.isEmpty()) {
 			throw new IllegalArgumentException("Negatives not allowed: " + negatives);
 		}
+	}
+
+	private static String removeLargeNumbers(String text) {
+		StringBuilder fixedString = new StringBuilder();
+
+		String[] nums = splitString(text);
+
+		for(String num : nums) {
+			if(toInt(num) <= 1000) {
+				fixedString.append(num + ",");
+			}
+		}
+
+		return fixedString.toString();
 	}
 }
