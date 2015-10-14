@@ -1,6 +1,8 @@
 package is.ru.stringcalculator;
 
+import static java.lang.System.out;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class CalculatorTest {
@@ -20,18 +22,8 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testNegativeOneNumber() {
-        assertEquals(-3, Calculator.addnums("-3"));
-    }
-
-    @Test
     public void testTwoNumbers() {
         assertEquals(7, Calculator.addnums("4,3"));
-    }
-
-    @Test
-    public void testNegativeTwoNumbers() {
-        assertEquals(-3, Calculator.addnums("0,-3"));
     }
 
     @Test
@@ -57,5 +49,58 @@ public class CalculatorTest {
     @Test
     public void testCustomDelim() {
         assertEquals(3, Calculator.addnums("//;\n1;2"));
+    }
+
+    @Test
+    public void testNegativeOneNumber() {
+        Boolean threwException = false;
+        try {
+            Calculator.addnums("-3");
+        }
+        catch(IllegalArgumentException ex) {
+            threwException = true;
+            //out.print("\nException message for testNegativeOneNumber: " + ex.getMessage() + "\n");
+        }
+        assertTrue(threwException);
+    }
+
+    @Test
+    public void testNegativeTwoNumbers() {
+        Boolean threwException = false;
+        try {
+            Calculator.addnums("-4,-3");
+        }
+        catch(IllegalArgumentException ex) {
+            threwException = true;
+            //out.print("\nException message for testNegativeTwoNumbers: " + ex.getMessage() + "\n");
+        }
+        assertTrue(threwException);
+    }
+
+    @Test
+    public void testNegativeNumbersWithCustomDelim() {
+        Boolean threwException = false;
+        try {
+            Calculator.addnums("//;\n1;-2");
+        }
+        catch(IllegalArgumentException ex) {
+            threwException = true;
+            //out.print("\nException message for testNegativeNumbersWithCustomDelim: " + ex.getMessage() + "\n");
+        }
+        assertTrue(threwException);
+    }
+
+
+    @Test
+    public void testNegSignAsDelimiter() {
+        Boolean threwException = false;
+        try {
+            Calculator.addnums("//-\n5-3");
+        }
+        catch(IllegalArgumentException ex) {
+            threwException = true;
+            //out.print("\nException message for testNegSignAsDelimiter: " + ex.getMessage() + "\n");
+        }
+        assertTrue(threwException);
     }
 }

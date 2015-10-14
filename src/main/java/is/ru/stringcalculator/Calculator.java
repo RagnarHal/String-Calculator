@@ -10,6 +10,8 @@ public class Calculator {
 
 		// Replace all '\n' with ',' and check if a new delimiter is requested
 		text = handleString(text);
+		// Throws exception if "-" is present in the string.
+		checkNegativeNumbers(text);
 
 		return sum(splitString(text));
 	}
@@ -41,6 +43,9 @@ public class Calculator {
 		if (text.startsWith("//")) {
 			// Extract the new delimiter
 			String delim = text.substring(2, 3);
+			// Check for illegal delimiter
+			if(delim.contains("-"))
+				throw new IllegalArgumentException("Illegal delimiter: " + delim);
 			// Throw away the "//[delimiter]\n" part
 			text = text.substring(4);
 			// Replace all instances of the new delimiter with the default one
@@ -48,5 +53,20 @@ public class Calculator {
 		}
 
 		return text;
+	}
+
+	private static void checkNegativeNumbers(String text) {
+		String[] negs = splitString(text);
+		String negatives = "";
+
+		for(String number : negs) {
+			if(number.contains("-")) {
+				negatives += number + ",";
+			}
+		}
+
+		if(!negatives.isEmpty()) {
+			throw new IllegalArgumentException("Negatives not allowed: " + negatives);
+		}
 	}
 }
