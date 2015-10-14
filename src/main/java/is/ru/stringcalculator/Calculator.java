@@ -8,7 +8,9 @@ public class Calculator {
 			return 0;
 		}
 
+		// Replace all '\n' with ',' and check if a new delimiter is requested
 		text = handleString(text);
+
 		return sum(splitString(text));
 	}
 
@@ -33,13 +35,15 @@ public class Calculator {
 	}
 
 	private static String handleString(String text) {
-
 		// Replace all newlines with the default delimiter to simplify expression handling
 		text = text.replace("\n", ",");
 
 		if (text.startsWith("//")) {
+			// Extract the new delimiter
 			String delim = text.substring(2, 3);
+			// Throw away the "//[delimiter]\n" part
 			text = text.substring(4);
+			// Replace all instances of the new delimiter with the default one
 			text = text.replace(delim, ",");
 		}
 
